@@ -1,0 +1,29 @@
+
+<!-- detail v.2 -->
+<h1>{{ sondage.question }}</h1>
+<ul>
+{% for choix in sondage.choix_set.all %}
+    <li>{{ choix.texte_choix }}</li>
+{% endfor %}
+</ul>
+
+
+
+
+{% comment %}
+<!-- detail v.3 -->
+{% load url from future %}
+
+<h1>{{ sondage.question }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'sondages:vote' sondage.id %}" method="post">
+{% csrf_token %}
+{% for choix in sondage.choix_set.all %}
+    <input type="radio" name="choix" id="choix{{ forloop.counter }}" value="{{ choix.id }}" />
+    <label for="choix{{ forloop.counter }}">{{ choix.texte_choix }}</label><br />
+{% endfor %}
+<input type="submit" value="Voter" />
+</form>
+{% endcomment %}

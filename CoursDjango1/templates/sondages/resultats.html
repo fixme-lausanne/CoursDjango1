@@ -1,0 +1,9 @@
+<h1>{{ sondage.question }}</h1>
+
+<ul>
+{% for choix in sondage.choix_set.all %}
+    <li>{{ choix.texte_choix }} -- {{ choix.votes }} vote{{ choix.votes|pluralize }}</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'sondages:detail' sondage.id %}">Voter à nouveau?</a>

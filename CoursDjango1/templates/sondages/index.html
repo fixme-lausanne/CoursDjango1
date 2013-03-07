@@ -1,0 +1,48 @@
+
+<!-- index v.2 -->
+{% if liste_derniers_sondages %}
+    <ul>
+    {% for sondage in liste_derniers_sondages %}
+        <li><a href="/sondages/{{ sondage.id }}/">{{ sondage.question }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Pas de sondage disponible.</p>
+{% endif %}
+
+
+
+
+
+{% comment %}
+<!-- index.html v.4.1 -->
+{% load url from future %}
+
+{% if liste_derniers_sondages %}
+    <ul>
+    {% for sondage in liste_derniers_sondages %}
+        <li><a href="{% url 'detail' sondage.id %}">{{ sondage.question }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Pas de sondage disponible.</p>
+{% endif %}
+{% endcomment %}
+
+
+
+
+{% comment %}
+<!-- index.html v.4.2 -->
+{% load url from future %}
+
+{% if liste_derniers_sondages %}
+    <ul>
+    {% for sondage in liste_derniers_sondages %}
+        <li><a href="{% url 'sondages:detail' sondage.id %}">{{ sondage.question }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Pas de sondage disponible.</p>
+{% endif %}
+{% endcomment %}
